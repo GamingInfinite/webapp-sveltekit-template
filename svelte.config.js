@@ -1,21 +1,14 @@
-import static_adapter from "@sveltejs/adapter-static";
+import adapter from "@sveltejs/adapter-netlify";
+import preprocess from "svelte-preprocess";
 
 const dev = "production" === "development";
 
 const config = {
+  preprocess: preprocess(),
   kit: {
-    adapter: static_adapter({
-      pages: "docs",
-      assets: "docs",
-    }),
-    paths: {
-      base: dev ? "" : "/webapp-sveltekit-template",
-    },
+    adapter: adapter(),
     methodOverride: {
       allowed: ["PATCH", "DELETE"],
-    },
-    prerender: {
-      default: true,
     },
   },
 };
